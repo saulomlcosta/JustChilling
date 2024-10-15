@@ -2,5 +2,12 @@ namespace TodoCli.Entities;
 
 public abstract class BaseEntity
 {
-  public Guid Id { get; set; } = Guid.NewGuid();
+  private static int _idCounter = 0;
+
+  public BaseEntity()
+  {
+    Id = ++_idCounter;
+  }
+
+  public int Id { get; private set; }
 }

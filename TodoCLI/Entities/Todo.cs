@@ -7,9 +7,10 @@ public class Todo : BaseEntity
   public Todo(string title)
   {
     Title = title;
+    Tasks = new List<Task>();
   }
 
-  public string Title { get; private set; } = string.Empty;
+  public string Title { get; private set; }
   public List<Task> Tasks { get; private set; } = new List<Task>();
 
   public void Add(string description)
@@ -19,19 +20,19 @@ public class Todo : BaseEntity
     Tasks.Add(task);
   }
 
-  public void Remove(Guid id)
+  public void Remove(int id)
   {
     var task = FindTaskById(id);
     Tasks.Remove(task);
   }
 
-  public void UpdateDescription(Guid id, string description)
+  public void UpdateDescription(int id, string description)
   {
     var task = FindTaskById(id);
     task.SetDescription(description);
   }
 
-  public Task FindTaskById(Guid id)
+  public Task FindTaskById(int id)
     => Tasks.FirstOrDefault(t => t.Id == id);
 
 
